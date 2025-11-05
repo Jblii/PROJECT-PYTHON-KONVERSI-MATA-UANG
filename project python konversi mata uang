@@ -1,0 +1,31 @@
+# Program Konversi Mata Uang Sederhana
+
+def konversi_mata_uang(jumlah, dari, ke):
+    # Nilai tukar (contoh, tidak real-time)
+    kurs = {
+        "IDR": {"USD": 0.000064, "EUR": 0.000059, "JPY": 9.94, "SGD": 0.000087},
+        "USD": {"IDR": 15600, "EUR": 0.92, "JPY": 156.1, "SGD": 1.36},
+        "EUR": {"IDR": 16900, "USD": 1.09, "JPY": 169.2, "SGD": 1.48},
+        "JPY": {"IDR": 100, "USD": 0.0064, "EUR": 0.0059, "SGD": 0.0087},
+        "SGD": {"IDR": 11500, "USD": 0.74, "EUR": 0.68, "JPY": 114.7},
+    }
+
+    try:
+        hasil = jumlah * kurs[dari][ke]
+        return hasil
+    except KeyError:
+        print("Kode mata uang tidak valid.")
+        return None
+
+
+print("=== Konversi Mata Uang ===")
+print("Contoh kode: IDR, USD, EUR, JPY, SGD")
+
+asal = input("Masukkan mata uang asal: ").upper()
+tujuan = input("Masukkan mata uang tujuan: ").upper()
+jumlah = float(input("Masukkan jumlah uang: "))
+
+hasil = konversi_mata_uang(jumlah, asal, tujuan)
+
+if hasil is not None:
+    print(f"\n{jumlah:.2f} {asal} = {hasil:.2f} {tujuan}")
